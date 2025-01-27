@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Погода по координатам</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2em;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Погода по координатам</h1>
+    <form method="GET" action="/weather/">
+        <label for="latitude">Широта:</label>
+        <input type="text" id="latitude" name="latitude" placeholder="Введите широту" required>
+
+        <label for="longitude">Долгота:</label>
+        <input type="text" id="longitude" name="longitude" placeholder="Введите долготу" required>
+
+        <button type="submit">Получить данные</button>
+    </form>
+
+    {% if weather_data %}
+        <h2>Данные о погоде</h2>
+        <ul>
+            <li>Текущая температура: {{ weather_data.current_temperature }}</li>
+            <li>Атмосферное давление: {{ weather_data.Current_surface_pressure }}</li>
+            <li>Скорость ветра: {{ weather_data.Current_wind_speed_10m }}</li>
+        </ul>
+    {% endif %}
+</div>
+
+</body>
+</html>
